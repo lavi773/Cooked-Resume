@@ -1,0 +1,372 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+    /* Cooked Resume dark theme tokens — OKLCH raw L C H values */
+    --background: 0.06 0 0;
+    --foreground: 0.95 0 0;
+    --card: 0.1 0 0;
+    --card-foreground: 0.95 0 0;
+    --popover: 0.12 0 0;
+    --popover-foreground: 0.95 0 0;
+    /* Neon green primary */
+    --primary: 0.82 0.22 142;
+    --primary-foreground: 0.06 0 0;
+    /* Electric orange secondary */
+    --secondary: 0.72 0.2 55;
+    --secondary-foreground: 0.06 0 0;
+    --muted: 0.15 0 0;
+    --muted-foreground: 0.58 0 0;
+    --accent: 0.82 0.22 142;
+    --accent-foreground: 0.06 0 0;
+    --destructive: 0.62 0.24 27;
+    --destructive-foreground: 0.95 0 0;
+    --border: 0.22 0 0;
+    --input: 0.18 0 0;
+    --ring: 0.82 0.22 142;
+    --chart-1: 0.82 0.22 142;
+    --chart-2: 0.72 0.2 55;
+    --chart-3: 0.55 0.18 250;
+    --chart-4: 0.65 0.19 330;
+    --chart-5: 0.78 0.15 95;
+    --sidebar: 0.08 0 0;
+    --sidebar-foreground: 0.95 0 0;
+    --sidebar-primary: 0.82 0.22 142;
+    --sidebar-primary-foreground: 0.06 0 0;
+    --sidebar-accent: 0.15 0 0;
+    --sidebar-accent-foreground: 0.82 0.22 142;
+    --sidebar-border: 0.22 0 0;
+    --sidebar-ring: 0.82 0.22 142;
+
+    /* Semantic color vars for direct CSS usage */
+    --color-neon-green: oklch(82% 0.22 142);
+    --color-electric-orange: oklch(72% 0.2 55);
+    --color-bg: #050505;
+    --color-surface: rgba(255, 255, 255, 0.04);
+    --color-surface-border: rgba(255, 255, 255, 0.08);
+    --color-text: #e8f0ef;
+    --color-text-muted: #7a8fa0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-color: #050505;
+    font-family: 'Cabinet Grotesk', 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+/* ── Keyframe Animations ── */
+@keyframes float-resume {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-18px) rotate(1.5deg); }
+  66%       { transform: translateY(8px) rotate(-1deg); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px 4px oklch(82% 0.22 142 / 0.35), 0 0 60px 10px oklch(82% 0.22 142 / 0.12); }
+  50%       { box-shadow: 0 0 35px 8px oklch(82% 0.22 142 / 0.55), 0 0 90px 20px oklch(82% 0.22 142 / 0.22); }
+}
+
+@keyframes scan-beam {
+  0%   { top: 5%; opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { top: 95%; opacity: 0; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slide-left {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-right {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes number-count {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes orange-glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px 4px oklch(72% 0.2 55 / 0.35), 0 0 60px 10px oklch(72% 0.2 55 / 0.12); }
+  50%       { box-shadow: 0 0 35px 8px oklch(72% 0.2 55 / 0.55), 0 0 90px 20px oklch(72% 0.2 55 / 0.22); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Utility Classes ── */
+.animate-float-resume {
+  animation: float-resume 7s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-orange-glow-pulse {
+  animation: orange-glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.animate-slide-left {
+  animation: slide-left 0.7s ease-out forwards;
+}
+
+.animate-slide-right {
+  animation: slide-right 0.7s ease-out forwards;
+}
+
+/* ── Glass Card ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-card-hover {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card-hover:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Neon Text ── */
+.text-neon-green {
+  color: oklch(82% 0.22 142);
+}
+
+.text-electric-orange {
+  color: oklch(72% 0.2 55);
+}
+
+/* ── Neon Glow Button ── */
+.btn-neon {
+  background: oklch(82% 0.22 142);
+  color: #050505;
+  font-weight: 700;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 20px oklch(82% 0.22 142 / 0.4), 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+.btn-neon:hover {
+  background: oklch(88% 0.24 142);
+  box-shadow: 0 0 35px oklch(82% 0.22 142 / 0.65), 0 6px 32px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-outline-ghost {
+  background: transparent;
+  color: oklch(82% 0.22 142);
+  border: 1.5px solid oklch(82% 0.22 142 / 0.5);
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.btn-outline-ghost:hover {
+  background: oklch(82% 0.22 142 / 0.1);
+  border-color: oklch(82% 0.22 142);
+  transform: translateY(-2px);
+}
+
+/* ── Section styles ── */
+.section-gradient-glow {
+  position: relative;
+}
+
+.section-gradient-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 50%, oklch(82% 0.22 142 / 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 80% 50%, oklch(72% 0.2 55 / 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Navbar glass on scroll ── */
+.navbar-glass {
+  background: rgba(5, 5, 5, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* ── In-view animation trigger ── */
+.inview-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.inview-hidden.inview-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.inview-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.inview-left.inview-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.inview-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.inview-right.inview-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Gradient headline text ── */
+.gradient-text-green {
+  background: linear-gradient(135deg, oklch(88% 0.26 142) 0%, oklch(75% 0.2 165) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-orange {
+  background: linear-gradient(135deg, oklch(75% 0.22 55) 0%, oklch(68% 0.2 40) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-mixed {
+  background: linear-gradient(135deg, oklch(88% 0.26 142) 0%, oklch(90% 0.12 142) 40%, oklch(78% 0.22 55) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Shimmer badge ── */
+.shimmer-badge {
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.08) 0%,
+    rgba(255,255,255,0.15) 50%,
+    rgba(255,255,255,0.08) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── Scan line overlay ── */
+.scan-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, oklch(82% 0.22 142) 50%, transparent 100%);
+  box-shadow: 0 0 20px oklch(82% 0.22 142 / 0.8), 0 0 40px oklch(82% 0.22 142 / 0.4);
+  animation: scan-beam 4s linear infinite;
+  pointer-events: none;
+}
+
+/* ── Step connector line ── */
+.step-connector {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, oklch(82% 0.22 142 / 0.3) 0%, oklch(82% 0.22 142 / 0.7) 50%, oklch(82% 0.22 142 / 0.3) 100%);
+  margin: 0 16px;
+  position: relative;
+  top: -40px;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(82% 0.22 142 / 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(82% 0.22 142 / 0.6);
+}
+
+/* ── Focus visible ── */
+:focus-visible {
+  outline: 2px solid oklch(82% 0.22 142);
+  outline-offset: 2px;
+}
+
+/* Delay utilities */
+.delay-100 { transition-delay: 100ms; animation-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; animation-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; animation-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; animation-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; animation-delay: 500ms; }
+.delay-600 { transition-delay: 600ms; animation-delay: 600ms; }
+.delay-700 { transition-delay: 700ms; animation-delay: 700ms; }
